@@ -41,11 +41,11 @@ for environment_dir in "$workspace"/cortico-*; do
             continue
         fi
 
-        if aws s3 cp "$compressed_log" "$destination"; then
-            if rm "$logfile" "$compressed_log"; then
+        if aws s3 mv "$compressed_log" "$destination"; then
+            if rm "$logfile"; then
                 echo "Successfully backed up and removed $logfile"
             else
-                echo "Uploaded $logfile but failed to remove local files" >&2
+                echo "Moved backup to S3 but failed to remove original log $logfile" >&2
                 failed=1
             fi
         else
