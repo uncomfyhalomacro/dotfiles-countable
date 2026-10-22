@@ -22,7 +22,12 @@ for environment_dir in "$workspace"/cortico-*; do
         *@tmp*|*ARCH*) continue ;;
     esac
 
-    for logfile in "$environment_dir"/*.log; do
+    for logfile in \
+        "$environment_dir"/*202*.log \
+        "$environment_dir"/audit_log.log \
+        "$environment_dir"/build.log \
+        "$environment_dir"/hl7_log.log \
+        "$environment_dir"/on_call_log.log; do
         [ -f "$logfile" ] || continue
 
         compressed_log=$logfile.zst
