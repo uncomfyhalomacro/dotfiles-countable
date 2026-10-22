@@ -28,7 +28,7 @@ for environment_dir in "$workspace"/cortico-*; do
         "$environment_dir"/build.log \
         "$environment_dir"/hl7_log.log \
         "$environment_dir"/on_call_log.log; do
-        [ -f "$logfile" ] || continue
+        [[ -f "$logfile" && -s "$logfile" ]] || continue
 
         compressed_log=$logfile.zst
         filename=${logfile##*/}.zst
