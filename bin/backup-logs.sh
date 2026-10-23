@@ -23,11 +23,7 @@ for environment_dir in "$workspace"/cortico-*; do
     esac
 
     for logfile in \
-        "$environment_dir"/*202*.log \
-        "$environment_dir"/audit_log.log \
-        "$environment_dir"/build.log \
-        "$environment_dir"/hl7_log.log \
-        "$environment_dir"/on_call_log.log; do
+        "$environment_dir"/*202*.log ; do
         [[ -f "$logfile" && -s "$logfile" ]] || continue
 
         compressed_log=$logfile.zst
